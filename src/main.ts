@@ -1,9 +1,14 @@
-let username = 'Riyas'
-console.log(username)
-
-let a: number = 12
-let b: number = 2
-let c: number = 2
+let myName: string = "Dave";
+let meaningOfLIfe: number;
+let isLoading: boolean;
+let album: any;
 
 
-console.log(a / b)
+myName = 'john'
+meaningOfLIfe = 42
+isLoading = true
+album = 43 || 'string'
+
+const sum = (a: number, b:number) => {
+    return a + b
+}

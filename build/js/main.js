@@ -1,7 +1,12 @@
 "use strict";
-let username = 'Riyas';
-console.log(username);
-let a = 12;
-let b = 2;
-let c = 2;
-console.log(a / b);
+let myName = "Dave";
+let meaningOfLIfe;
+let isLoading;
+let album;
+myName = 'john';
+meaningOfLIfe = 42;
+isLoading = true;
+album = 43 || 'string';
+const sum = (a, b) => {
+    return a + b;
+};
