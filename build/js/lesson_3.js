@@ -53,5 +53,18 @@ let interfaceStudent = {
 };
 const printStudentName = (student) => {
     var _a;
-    return `Hello ${(_a = student.name) === null || _a === void 0 ? void 0 : _a.toString()}`;
+    //return `Hello ${student.name.toString()}` //will throw an error because name is a union type that can be undefined an we can call methods on undefined
+    return `${(_a = student.name) === null || _a === void 0 ? void 0 : _a.toString()}`; //by adding optional chaining it will work fine
 };
+//Enums 
+// "Unlike most ts features, enums are not a type-level addition to js but 
+// something addition to javascript but something added to the language and runtime"
+var Grade;
+(function (Grade) {
+    Grade[Grade["U"] = 0] = "U";
+    Grade[Grade["D"] = 1] = "D";
+    Grade[Grade["C"] = 2] = "C";
+    Grade[Grade["B"] = 3] = "B";
+    Grade[Grade["A"] = 4] = "A";
+})(Grade || (Grade = {}));
+console.log(Grade.U); // 0
