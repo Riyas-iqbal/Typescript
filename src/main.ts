@@ -1,10 +1,10 @@
-let myName: string = "Dave";
+let _myName: string = "Dave";
 let meaningOfLIfe: number;
 let isLoading: boolean;
 let album: any;
 
 
-myName = 'john'
+_myName = 'john'
 meaningOfLIfe = 42
 isLoading = true
 album = 42
