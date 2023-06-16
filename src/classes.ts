@@ -1,5 +1,6 @@
-
-
+/**
+ * Defining Classes members
+ */
 class Code {
     //we can create a member without being initialized in the constructor
     name: string;
@@ -25,13 +26,13 @@ class Code {
 
 class Coder {
     constructor(
-        public readonly name:string,
+        public readonly name: string,
         public music: string,
         private age: number,
         protected lang: string,
-    ){
+    ) {
         this.name = name
-        this.music = music 
+        this.music = music
         this.age = age
         this.lang = lang
     }
@@ -44,18 +45,103 @@ class Coder {
 
 class CoderTwo {
 
-    secondLang! : string // beginners are advised to stay away from this
+    secondLang!: string // beginners are advised to stay away from this
 
     constructor(
-        public readonly name:string,
+        public readonly name: string,
         public music: string,
         private age: number,
-        protected lang: string,
-    ){
+        protected lang: string = 'eng',
+    ) {
         this.name = name
-        this.music = music 
+        this.music = music
         this.age = age
         this.lang = lang
     }
+
+    public getAge() {
+        return `Hello, I'm ${this.name}`
+    }
 }
 
+const Dave = new CoderTwo('Dave', 'Rock', 42, 'eng')
+console.log(Dave.getAge()) //Hello, I'm Dave
+// console.log(Dave.age) [error] property age is private
+// console.log(Dave.lang) [error] property lang is protected, only accessible within CoderTwo class and its subclass
+
+class WebDev extends CoderTwo {
+    constructor(
+        public computer: string,
+        name: string,
+        music: string,
+        age: number
+    ) {
+        super(name, music, age)
+        this.computer = computer
+    }
+
+    public getLang(){
+        return `I write ${this.lang}`
+    }
+}
+
+const Riyas = new WebDev('mac', 'riyas', 'lofi', 43)
+
+console.log(Riyas.getLang()) 
+// console.log(Riyas.age) [error] because age is still private
+// console.log(Riyas.lang) [error] because age is still protected and only accessible in subclass
+
+// ----------------------------------------------------------------
+
+interface Musician {
+    name:string,
+    instrument:string,
+    play(action: string): string
+}
+
+class Guitarist implements Musician {
+    name: string;
+    instrument: string;
+
+    constructor(name:string,instrument:string){
+        this.name = name;
+        this.instrument = instrument;
+    }
+
+    play(action:string):string{
+        return `${this.name} ${action} the ${this.instrument}`;
+    }
+}
+
+const Page = new Guitarist('Jimmy','guitar');
+
+console.log(Page.play('strums'))
+
+
+// static members
+
+class Peeps{
+    static count: number = 0; 
+     //static member has a sinlge memory for whole class even if it has multiple objects
+
+    static getCount(): number {
+        return Peeps.count
+    }
+
+    public id: number
+
+    constructor(public name:string){
+        this.name = name
+        this.id = ++Peeps.count
+    }
+}
+
+
+const John = new Peeps('John')
+const Amy = new Peeps('Amy')
+const Steve = new Peeps('Steve')
+
+console.log(John.id) // 1 
+console.log(Amy.id) // 2 
+
+console.log(Peeps.count) //will print 3 because count is a static member 
