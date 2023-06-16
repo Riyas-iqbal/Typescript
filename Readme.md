@@ -1,3 +1,7 @@
+## Info
+
+Different chapters can be found in different branches
+
 ## install
 npm install typescript -g 
 (global)
