@@ -80,22 +80,22 @@ class WebDev extends CoderTwo {
         this.computer = computer
     }
 
-    public getLang(){
+    public getLang() {
         return `I write ${this.lang}`
     }
 }
 
 const Riyas = new WebDev('mac', 'riyas', 'lofi', 43)
 
-console.log(Riyas.getLang()) 
+console.log(Riyas.getLang())
 // console.log(Riyas.age) [error] because age is still private
 // console.log(Riyas.lang) [error] because age is still protected and only accessible in subclass
 
 // ----------------------------------------------------------------
 
 interface Musician {
-    name:string,
-    instrument:string,
+    name: string,
+    instrument: string,
     play(action: string): string
 }
 
@@ -103,26 +103,26 @@ class Guitarist implements Musician {
     name: string;
     instrument: string;
 
-    constructor(name:string,instrument:string){
+    constructor(name: string, instrument: string) {
         this.name = name;
         this.instrument = instrument;
     }
 
-    play(action:string):string{
+    play(action: string): string {
         return `${this.name} ${action} the ${this.instrument}`;
     }
 }
 
-const Page = new Guitarist('Jimmy','guitar');
+const Page = new Guitarist('Jimmy', 'guitar');
 
 console.log(Page.play('strums'))
 
 
 // static members
 
-class Peeps{
-    static count: number = 0; 
-     //static member has a sinlge memory for whole class even if it has multiple objects
+class Peeps {
+    static count: number = 0;
+    //static member has a sinlge memory for whole class even if it has multiple objects
 
     static getCount(): number {
         return Peeps.count
@@ -130,7 +130,7 @@ class Peeps{
 
     public id: number
 
-    constructor(public name:string){
+    constructor(public name: string) {
         this.name = name
         this.id = ++Peeps.count
     }
@@ -145,3 +145,35 @@ console.log(John.id) // 1
 console.log(Amy.id) // 2 
 
 console.log(Peeps.count) //will print 3 because count is a static member 
+
+//----------------------------------------------------------------
+
+/**
+ * Getters and setters
+ */
+
+class Bands {
+    private dataState: string[]
+
+    constructor() {
+        this.dataState = []
+    }
+
+    public get data(): string[] {
+        return this.dataState
+    }
+
+    public set data(value: string[]) {
+        if (Array.isArray(value) && value.every(el => typeof el === 'string')) {
+            this.dataState = value
+            return
+        } else throw new Error('Param is not an array of strings')
+    }
+}
+
+const MyBands = new Bands()
+MyBands.data = ['Neil Young','Led Zep']
+console.log(MyBands)
+MyBands.data = [...MyBands.data,'ZZ Top']
+console.log(MyBands.data)
+// MyBands.data = ['Van Halen',43] [error] type number is assignable to string
